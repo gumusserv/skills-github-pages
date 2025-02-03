@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To Fufu 0201</title>
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
+    <style>
+        /* 全局样式 */
+        body {
+            font-family: 'Microsoft YaHei', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #ff6b6b, #ff8e8e);
+            color: #fff;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* 粒子容器 */
+        #particles-js {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+        }
+
+        /* 主内容容器 */
+        .container {
+            position: relative;
+            z-index: 2;
+            padding: 2rem;
+        }
+
+        /* 标题样式 */
+        h1 {
+            font-family: 'Great Vibes', cursive;
+            font-size: 4em;
+            color: #fff;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+            margin: 2rem 0;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        /* 信封样式 */
+        .envelope {
+            max-width: 800px;
+            margin: 2rem auto;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            padding: 3rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            transform-style: preserve-3d;
+            transition: transform 0.6s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .envelope::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, 
+                rgba(255,255,255,0.1) 25%,
+                transparent 25%,
+                transparent 50%,
+                rgba(255,255,255,0.1) 50%,
+                rgba(255,255,255,0.1) 75%,
+                transparent 75%);
+            background-size: 3px 3px;
+            transform: rotate(45deg);
+        }
+
+        /* 动态情书样式 */
+        #love-letter {
+            font-size: 1.2em;
+            line-height: 2;
+            color: #6c5b7b;
+            position: relative;
+            white-space: pre-wrap;
+            overflow: hidden;
+        }
+
+        /* 打字光标 */
+        #love-letter::after {
+            content: "|";
+            color: #ff6b6b;
+            animation: blink 0.7s infinite;
+        }
+
+        /* 动画定义 */
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+
+        /* 爱心雨 */
+        .heart {
+            position: absolute;
+            color: #ff6b6b;
+            font-size: 1.2em;
+            animation: fall linear infinite;
+        }
+
+        @keyframes fall {
+            to {
+                transform: translateY(100vh) rotate(360deg);
+            }
+        }
+
+        #password-prompt {
+            margin-top: 100px;
+        }
+        #content {
+            display: none; /* 默认隐藏内容 */
+        }
+    </style>
+</head>
+<body>
+    <div id="password-prompt">
+        <h1>Enter the Secret Code</h1>
+        <input type="password" id="password-input" placeholder="Enter password">
+        <button onclick="checkPassword()">Submit</button>
+        <p id="error-message" style="color: red; display: none;">Incorrect password!</p>
+    </div>
+
+    <div id="content">
+        <!-- 你的网页内容 -->
+       
+    
+        <div id="particles-js"></div>
+        <div class="container">
+            <h1>To My Fufu</h1>
+            <div class="envelope">
+                <div id="love-letter"></div>
+            </div>
+        </div>
+
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <script>
+        // 粒子背景配置
+        particlesJS('particles-js', {
+            particles: {
+                number: { value: 80 },
+                color: { value: '#ffffff' },
+                shape: { type: 'heart' },
+                size: { value: 10 },
+                move: {
+                    enable: true,
+                    speed: 3,
+                    direction: 'none',
+                    random: true,
+                    straight: false,
+                    out_mode: 'out',
+                    bounce: false
+                }
+            },
+            interactivity: {
+                detect_on: 'canvas',
+                events: {
+                    onhover: { enable: true, mode: 'repulse' },
+                    onclick: { enable: true, mode: 'push' }
+                }
+            }
+        });
+
+        // 动态情书
+        const letter = `
+    宝宝宝宝，现在的你应该已经睡了，而看到这封信的时候不知道是谁先起床了。
+    
+    收到你的这封来信，让我心里真的暖暖的，非常感动。
+
+    不知不觉我们已经认识了快一个月，这段时间我们一起做了很多事情，看番、听音乐、玩游戏都很愉快。
+
+    从开始叫宝宝，或者说一些暧昧的话的时候，我也会蛮紧张，但你会给我许多正向的反馈。这时候我既会觉得惊喜和开心，但是同时也会担心这一切是不是来的太快，有些梦幻。
+
+    不过这封信，以及前一天你和我说的思考，让我相信我的忧虑是多余的，很幸运可以和你有如此心灵上的共鸣。
+
+    我想，你一定是一个很有趣的人，以及之前的聊天让我觉得你是一个大大咧咧很外向的人；但是这封信让我觉得你也是一个心思很细腻，或许会因为我有很多心事的可爱的宝宝。
+
+    不过没有关系，别想太多，我想我很可靠，也应该蛮温柔，一定能照顾好你的情绪，给你所需要的，让你在这段关系里收获稳稳的幸福。
+
+    想一直做你的专属队友，我们还有很长的一段路要走。总有一天我们能一起去看富士山下的樱花。`;
+        let index = 0;
+        const loveLetter = document.getElementById('love-letter');
+
+        function createHearts() {
+            setInterval(() => {
+                const heart = document.createElement('div');
+                heart.className = 'heart';
+                heart.innerHTML = '❤';
+                heart.style.left = Math.random() * 100 + 'vw';
+                heart.style.animationDuration = Math.random() * 3 + 2 + 's';
+                document.body.appendChild(heart);
+                setTimeout(() => heart.remove(), 5000);
+            }, 300);
+        }
+
+        function typeLetter() {
+            if (index < letter.length) {
+                loveLetter.textContent += letter.charAt(index);
+                index++;
+                setTimeout(typeLetter, 50);
+            }
+        }
+
+        // 初始化
+        window.onload = () => {
+            typeLetter();
+            createHearts();
+            
+            // 添加悬停效果
+            document.querySelector('.envelope').addEventListener('mouseover', () => {
+                document.querySelector('.envelope').style.transform = 'rotateY(10deg) rotateX(5deg)';
+            });
+            
+            document.querySelector('.envelope').addEventListener('mouseout', () => {
+                document.querySelector('.envelope').style.transform = 'none';
+            });
+        }
+    </script>
+
+    <script>
+        function checkPassword() {
+            const password = "iloveyou"; // 设置密码
+            const input = document.getElementById('password-input').value;
+            const errorMessage = document.getElementById('error-message');
+
+            if (input === password) {
+                document.getElementById('password-prompt').style.display = 'none';
+                document.getElementById('content').style.display = 'block';
+            } else {
+                errorMessage.style.display = 'block';
+            }
+        }
+    </script>
+</body>
+</html>
