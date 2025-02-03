@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>To Fufu 0201</title>
+    <title>新年快乐兄弟们</title>
     <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
     <style>
         /* 全局样式 */
@@ -119,18 +119,59 @@
         #password-prompt {
             margin-top: 100px;
         }
+        /*
         #content {
-            display: none; /* 默认隐藏内容 */
+            display: none; 
+        } */
+        #content {
+            display: block; /* 默认隐藏内容 */
+        }
+
+        #love-letter {
+            font-family: 'ZCOOL XiaoWei', cursive;
+            font-size: 2.3em;
+            line-height: 2;
+            color: #3d3d3d; /* 水墨色 */
+            position: relative;
+            white-space: pre-wrap;
+            overflow: hidden;
+        }
+
+        /* 新增星光动画样式 */
+        @keyframes star-twinkle {
+            0% { 
+                opacity: 0;
+                transform: scale(0) rotate(0deg);
+            }
+            50% {
+                opacity: 1;
+                transform: scale(1.2) rotate(180deg);
+                filter: blur(0px);
+            }
+            100% {
+                opacity: 0;
+                transform: scale(2) rotate(360deg);
+                filter: blur(2px);
+            }
+        }
+
+        .star-effect {
+            position: absolute;
+            width: 15px;
+            height: 15px;
+            background: radial-gradient(circle, #fff 10%, rgba(255,255,255,0) 70%);
+            pointer-events: none;
+            animation: star-twinkle 0.6s ease-out forwards;
         }
     </style>
 </head>
 <body>
-    <div id="password-prompt">
+    <!-- <div id="password-prompt">
         <h1>Enter the Secret Code</h1>
         <input type="password" id="password-input" placeholder="Enter password">
         <button onclick="checkPassword()">Submit</button>
         <p id="error-message" style="color: red; display: none;">Incorrect password!</p>
-    </div>
+    </div> -->
 
     <div id="content">
         <!-- 你的网页内容 -->
@@ -138,7 +179,7 @@
     
         <div id="particles-js"></div>
         <div class="container">
-            <h1>To My Fufu</h1>
+            <h1>富士山下</h1>
             <div class="envelope">
                 <div id="love-letter"></div>
             </div>
@@ -176,21 +217,72 @@
 
         // 动态情书
         const letter = `
-    宝宝宝宝，现在的你应该已经睡了，而看到这封信的时候不知道是谁先起床了。
-    
-    收到你的这封来信，让我心里真的暖暖的，非常感动。
+    拦路雨偏似雪花 饮泣的你冻吗
 
-    不知不觉我们已经认识了快一个月，这段时间我们一起做了很多事情，看番、听音乐、玩游戏都很愉快。
+    这风褛我给你磨到有襟花
 
-    从开始叫宝宝，或者说一些暧昧的话的时候，我也会蛮紧张，但你会给我许多正向的反馈。这时候我既会觉得惊喜和开心，但是同时也会担心这一切是不是来的太快，有些梦幻。
+    连掉了渍也不怕 怎么始终牵挂
 
-    不过这封信，以及前一天你和我说的思考，让我相信我的忧虑是多余的，很幸运可以和你有如此心灵上的共鸣。
+    苦心选中今天想车你回家
 
-    我想，你一定是一个很有趣的人，以及之前的聊天让我觉得你是一个大大咧咧很外向的人；但是这封信让我觉得你也是一个心思很细腻，或许会因为我有很多心事的可爱的宝宝。
+    原谅我不再送花 伤口应要结疤
 
-    不过没有关系，别想太多，我想我很可靠，也应该蛮温柔，一定能照顾好你的情绪，给你所需要的，让你在这段关系里收获稳稳的幸福。
+    花瓣铺满心里坟场才害怕
 
-    想一直做你的专属队友，我们还有很长的一段路要走。总有一天我们能一起去看富士山下的樱花。`;
+    如若你非我不嫁 彼此终必火化
+
+    一生一世等一天需要代价
+
+    谁都只得那双手 靠拥抱亦难任你拥有
+
+    要拥有必先懂失去怎接受
+
+    曾沿着雪路浪游 为何为好事泪流
+
+    谁能凭爱意要富士山私有
+
+    何不把悲哀感觉 假设是来自你虚构
+
+    试管里找不到它染污眼眸
+
+    前尘硬化像石头 随缘地抛下便逃走
+
+    我绝不罕有 往街里绕过一周 我便化乌有
+
+    情人节不要说穿 只敢抚你发端
+
+    这种姿态可会令你更心酸
+
+    留在汽车里取暖 应该怎么规劝
+
+    怎么可以将手腕忍痛划损
+
+    人活到几岁算短 失恋只有更短
+
+    归家需要几里路谁能预算
+
+    忘掉我跟你恩怨 樱花开了几转
+
+    东京之旅一早比一世遥远
+
+    谁都只得那双手 靠拥抱亦难任你拥有
+
+    要拥有必先懂失去怎接受
+
+    曾沿着雪路浪游 为何为好事泪流
+
+    谁能凭爱意要富士山私有
+
+    何不把悲哀感觉 假设是来自你虚构
+
+    试管里找不到它染污眼眸
+
+    前尘硬化像石头 随缘地抛下便逃走
+
+    我绝不罕有 往街里绕过一周 我便化乌有
+
+    你还嫌不够 我把这陈年风褛 送赠你解咒
+    `;
         let index = 0;
         const loveLetter = document.getElementById('love-letter');
 
@@ -206,11 +298,39 @@
             }, 300);
         }
 
+        // 修改后的打字效果
+        function createStar(x, y) {
+            const star = document.createElement('div');
+            star.className = 'star-effect';
+            star.style.left = x + 'px';
+            star.style.top = y + 'px';
+            document.body.appendChild(star);
+            
+            // 动画结束后移除元素
+            star.addEventListener('animationend', () => {
+                star.remove();
+            });
+        }
+
         function typeLetter() {
             if (index < letter.length) {
-                loveLetter.textContent += letter.charAt(index);
+                const char = letter.charAt(index);
+                const container = document.createElement('span');
+                container.className = 'char-container';
+                
+                const charSpan = document.createElement('span');
+                charSpan.textContent = char;
+                charSpan.className = 'char-typed';
+                
+                container.appendChild(charSpan);
+                loveLetter.appendChild(container);
+
+                // 获取当前字符位置
+                const rect = charSpan.getBoundingClientRect();
+                createStar(rect.right - 5, rect.top + 5);
+
                 index++;
-                setTimeout(typeLetter, 50);
+                setTimeout(typeLetter, 150); // 调慢打字速度保证星光可见
             }
         }
 
