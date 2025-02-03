@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>新年快乐兄弟们</title>
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
+    <style>
+        /* 全局样式 */
+        body {
+            font-family: 'Microsoft YaHei', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #ff6b6b, #ff8e8e);
+            color: #fff;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* 粒子容器 */
+        #particles-js {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+        }
+
+        /* 主内容容器 */
+        .container {
+            position: relative;
+            z-index: 2;
+            padding: 2rem;
+        }
+
+        /* 标题样式 */
+        h1 {
+            font-family: 'Great Vibes', cursive;
+            font-size: 4em;
+            color: #fff;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+            margin: 2rem 0;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        /* 信封样式 */
+        .envelope {
+            max-width: 800px;
+            margin: 2rem auto;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            padding: 3rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            transform-style: preserve-3d;
+            transition: transform 0.6s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .envelope::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, 
+                rgba(255,255,255,0.1) 25%,
+                transparent 25%,
+                transparent 50%,
+                rgba(255,255,255,0.1) 50%,
+                rgba(255,255,255,0.1) 75%,
+                transparent 75%);
+            background-size: 3px 3px;
+            transform: rotate(45deg);
+        }
+
+        /* 动态情书样式 */
+        #love-letter {
+            font-size: 1.2em;
+            line-height: 2;
+            color: #6c5b7b;
+            position: relative;
+            white-space: pre-wrap;
+            overflow: hidden;
+        }
+
+        /* 打字光标 */
+        #love-letter::after {
+            content: "|";
+            color: #ff6b6b;
+            animation: blink 0.7s infinite;
+        }
+
+        /* 动画定义 */
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+
+        /* 爱心雨 */
+        .heart {
+            position: absolute;
+            color: #ff6b6b;
+            font-size: 1.2em;
+            animation: fall linear infinite;
+        }
+
+        @keyframes fall {
+            to {
+                transform: translateY(100vh) rotate(360deg);
+            }
+        }
+
+        #password-prompt {
+            margin-top: 100px;
+        }
+        /*
+        #content {
+            display: none; 
+        } */
+        #content {
+            display: block; /* 默认隐藏内容 */
+        }
+
+        #love-letter {
+            font-family: 'ZCOOL XiaoWei', cursive;
+            font-size: 2.3em;
+            line-height: 2;
+            color: #3d3d3d; /* 水墨色 */
+            position: relative;
+            white-space: pre-wrap;
+            overflow: hidden;
+        }
+
+        /* 新增星光动画样式 */
+        @keyframes star-twinkle {
+            0% { 
+                opacity: 0;
+                transform: scale(0) rotate(0deg);
+            }
+            50% {
+                opacity: 1;
+                transform: scale(1.2) rotate(180deg);
+                filter: blur(0px);
+            }
+            100% {
+                opacity: 0;
+                transform: scale(2) rotate(360deg);
+                filter: blur(2px);
+            }
+        }
+
+        .star-effect {
+            position: absolute;
+            width: 15px;
+            height: 15px;
+            background: radial-gradient(circle, #fff 10%, rgba(255,255,255,0) 70%);
+            pointer-events: none;
+            animation: star-twinkle 0.6s ease-out forwards;
+        }
+    </style>
+</head>
+<body>
+    <!-- <div id="password-prompt">
+        <h1>Enter the Secret Code</h1>
+        <input type="password" id="password-input" placeholder="Enter password">
+        <button onclick="checkPassword()">Submit</button>
+        <p id="error-message" style="color: red; display: none;">Incorrect password!</p>
+    </div> -->
+
+    <div id="content">
+        <!-- 你的网页内容 -->
+       
+    
+        <div id="particles-js"></div>
+        <div class="container">
+            <h1>富士山下</h1>
+            <div class="envelope">
+                <div id="love-letter"></div>
+            </div>
+        </div>
+
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <script>
+        // 粒子背景配置
+        particlesJS('particles-js', {
+            particles: {
+                number: { value: 80 },
+                color: { value: '#ffffff' },
+                shape: { type: 'heart' },
+                size: { value: 10 },
+                move: {
+                    enable: true,
+                    speed: 3,
+                    direction: 'none',
+                    random: true,
+                    straight: false,
+                    out_mode: 'out',
+                    bounce: false
+                }
+            },
+            interactivity: {
+                detect_on: 'canvas',
+                events: {
+                    onhover: { enable: true, mode: 'repulse' },
+                    onclick: { enable: true, mode: 'push' }
+                }
+            }
+        });
+
+        // 动态情书
+        const letter = `
+    拦路雨偏似雪花 饮泣的你冻吗
+
+    这风褛我给你磨到有襟花
+
+    连掉了渍也不怕 怎么始终牵挂
+
+    苦心选中今天想车你回家
+
+    原谅我不再送花 伤口应要结疤
+
+    花瓣铺满心里坟场才害怕
+
+    如若你非我不嫁 彼此终必火化
+
+    一生一世等一天需要代价
+
+    谁都只得那双手 靠拥抱亦难任你拥有
+
+    要拥有必先懂失去怎接受
+
+    曾沿着雪路浪游 为何为好事泪流
+
+    谁能凭爱意要富士山私有
+
+    何不把悲哀感觉 假设是来自你虚构
+
+    试管里找不到它染污眼眸
+
+    前尘硬化像石头 随缘地抛下便逃走
+
+    我绝不罕有 往街里绕过一周 我便化乌有
+
+    情人节不要说穿 只敢抚你发端
+
+    这种姿态可会令你更心酸
+
+    留在汽车里取暖 应该怎么规劝
+
+    怎么可以将手腕忍痛划损
+
+    人活到几岁算短 失恋只有更短
+
+    归家需要几里路谁能预算
+
+    忘掉我跟你恩怨 樱花开了几转
+
+    东京之旅一早比一世遥远
+
+    谁都只得那双手 靠拥抱亦难任你拥有
+
+    要拥有必先懂失去怎接受
+
+    曾沿着雪路浪游 为何为好事泪流
+
+    谁能凭爱意要富士山私有
+
+    何不把悲哀感觉 假设是来自你虚构
+
+    试管里找不到它染污眼眸
+
+    前尘硬化像石头 随缘地抛下便逃走
+
+    我绝不罕有 往街里绕过一周 我便化乌有
+
+    你还嫌不够 我把这陈年风褛 送赠你解咒
+    `;
+        let index = 0;
+        const loveLetter = document.getElementById('love-letter');
+
+        function createHearts() {
+            setInterval(() => {
+                const heart = document.createElement('div');
+                heart.className = 'heart';
+                heart.innerHTML = '❤';
+                heart.style.left = Math.random() * 100 + 'vw';
+                heart.style.animationDuration = Math.random() * 3 + 2 + 's';
+                document.body.appendChild(heart);
+                setTimeout(() => heart.remove(), 5000);
+            }, 300);
+        }
+
+        // 修改后的打字效果
+        function createStar(x, y) {
+            const star = document.createElement('div');
+            star.className = 'star-effect';
+            star.style.left = x + 'px';
+            star.style.top = y + 'px';
+            document.body.appendChild(star);
+            
+            // 动画结束后移除元素
+            star.addEventListener('animationend', () => {
+                star.remove();
+            });
+        }
+
+        function typeLetter() {
+            if (index < letter.length) {
+                const char = letter.charAt(index);
+                const container = document.createElement('span');
+                container.className = 'char-container';
+                
+                const charSpan = document.createElement('span');
+                charSpan.textContent = char;
+                charSpan.className = 'char-typed';
+                
+                container.appendChild(charSpan);
+                loveLetter.appendChild(container);
+
+                // 获取当前字符位置
+                const rect = charSpan.getBoundingClientRect();
+                createStar(rect.right - 5, rect.top + 5);
+
+                index++;
+                setTimeout(typeLetter, 150); // 调慢打字速度保证星光可见
+            }
+        }
+
+        // 初始化
+        window.onload = () => {
+            typeLetter();
+            createHearts();
+            
+            // 添加悬停效果
+            document.querySelector('.envelope').addEventListener('mouseover', () => {
+                document.querySelector('.envelope').style.transform = 'rotateY(10deg) rotateX(5deg)';
+            });
+            
+            document.querySelector('.envelope').addEventListener('mouseout', () => {
+                document.querySelector('.envelope').style.transform = 'none';
+            });
+        }
+    </script>
+
+    <script>
+        function checkPassword() {
+            const password = "iloveyou"; // 设置密码
+            const input = document.getElementById('password-input').value;
+            const errorMessage = document.getElementById('error-message');
+
+            if (input === password) {
+                document.getElementById('password-prompt').style.display = 'none';
+                document.getElementById('content').style.display = 'block';
+            } else {
+                errorMessage.style.display = 'block';
+            }
+        }
+    </script>
+</body>
+</html>
